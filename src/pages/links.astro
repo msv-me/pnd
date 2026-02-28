@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const links = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com/prepsnotdead",
+    description: "Daily style & inspiration",
+  },
+  {
+    label: "Pinterest",
+    href: "https://pinterest.com/prepsnotdead",
+    description: "Curated boards — architecture, style, Americana",
+  },
+  {
+    label: "Blog",
+    href: "/blog/",
+    description: "Long-form posts & curated picks",
+  },
+  {
+    label: "Services",
+    href: "/services/",
+    description: "Photography & creative direction",
+  },
+  {
+    label: "Email",
+    href: "mailto:hello@prepsnotdead.com",
+    description: "Get in touch",
+  },
+];
+---
+
+<BaseLayout
+  title="Links"
+  description="All Preps Not Dead links in one place — Instagram, Pinterest, blog, and more."
+>
+  <section class="flex min-h-[80vh] items-center justify-center bg-brand-black text-white">
+    <div class="mx-auto w-full max-w-md px-6 py-16 text-center">
+      <img
+        src="/images/pnd-logo-white.png"
+        alt="Preps Not Dead"
+        class="mx-auto mb-4 h-20 w-auto"
+      />
+      <h1 class="font-serif text-2xl font-bold">Preps Not Dead</h1>
+      <p class="mt-1 text-sm text-gray-400">Where prep meets punk.</p>
+
+      <div class="mt-8 flex flex-col gap-3">
+        {links.map(({ label, href, description }) => (
+          <a
+            href={href}
+            target={href.startsWith("http") ? "_blank" : undefined}
+            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            class="group block rounded-sm border border-gray-700 px-6 py-4 transition-all hover:border-brand-green hover:bg-brand-green/10"
+          >
+            <span class="block text-sm font-semibold uppercase tracking-widest group-hover:text-brand-green">
+              {label}
+            </span>
+            <span class="mt-1 block text-xs text-gray-500">{description}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

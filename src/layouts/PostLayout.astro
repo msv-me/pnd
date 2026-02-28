@@ -1,0 +1,108 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import EmailSignup from "../components/EmailSignup.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  tags?: string[];
+  affiliateDisclosure?: boolean;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  tags = [],
+  affiliateDisclosure = false,
+} = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  ...(heroImage && { image: heroImage }),
+  author: {
+    "@type": "Person",
+    name: "Chet Cannon",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Preps Not Dead",
+  },
+};
+---
+
+<BaseLayout title={title} description={description} image={heroImage} type="article">
+  <article>
+    {heroImage && (
+      <div class="w-full">
+        <img
+          src={heroImage}
+          alt={title}
+          class="aspect-[21/9] w-full object-cover"
+        />
+      </div>
+    )}
+
+    <div class="mx-auto max-w-3xl px-6 py-12">
+      <header class="mb-8">
+        <div class="flex items-center gap-3 text-sm text-brand-gray">
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+          {formattedUpdated && (
+            <>
+              <span>&middot;</span>
+              <span>Updated {formattedUpdated}</span>
+            </>
+          )}
+        </div>
+        <h1 class="mt-3 font-serif text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+          {title}
+        </h1>
+        {tags.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="rounded-sm bg-brand-gray-light px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-gray">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      {affiliateDisclosure && (
+        <div class="mb-8 rounded-lg border border-brand-gray-light bg-white p-4 text-sm text-brand-gray">
+          <strong>Disclosure:</strong> This post contains affiliate links. If you make a purchase through these links, we may earn a small commission at no extra cost to you.
+        </div>
+      )}
+
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <EmailSignup />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</BaseLayout>

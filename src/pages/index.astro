@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import PostCard from "../components/PostCard.astro";
+import InstagramFeed from "../components/InstagramFeed.astro";
+import EmailSignup from "../components/EmailSignup.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+
+<BaseLayout
+  title="Preps Not Dead"
+  description="Where prep meets punk. Style, culture & the good life — a blog by Chet Cannon."
+>
+  <Hero />
+
+  {posts.length > 0 && (
+    <section class="mx-auto max-w-6xl px-6 py-16">
+      <h2 class="font-serif text-2xl font-bold sm:text-3xl">Latest Posts</h2>
+      <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.id}
+            heroImage={post.data.heroImage}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a
+          href="/blog/"
+          class="inline-block rounded-sm border border-brand-black px-6 py-3 text-sm font-semibold uppercase tracking-widest transition-colors hover:bg-brand-black hover:text-white"
+        >
+          View All Posts
+        </a>
+      </div>
+    </section>
+  )}
+
+  <InstagramFeed />
+  <EmailSignup dark />
+</BaseLayout>

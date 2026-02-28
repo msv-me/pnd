@@ -1,0 +1,43 @@
+---
+interface Props {
+  dark?: boolean;
+}
+
+const { dark = false } = Astro.props;
+---
+
+<section
+  class:list={[
+    "py-16",
+    dark ? "bg-brand-black text-white" : "bg-brand-gray-light",
+  ]}
+>
+  <div class="mx-auto max-w-xl px-6 text-center">
+    <h2 class="font-serif text-2xl font-bold sm:text-3xl">Stay in the Loop</h2>
+    <p class:list={["mt-2 text-sm", dark ? "text-gray-400" : "text-brand-gray"]}>
+      Get new posts, style picks & curated finds delivered to your inbox.
+    </p>
+    <form
+      action="#"
+      method="POST"
+      class="mt-6 flex flex-col gap-3 sm:flex-row"
+    >
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="your@email.com"
+        class="flex-1 rounded-sm border border-gray-300 bg-white px-4 py-3 text-sm text-brand-black placeholder:text-gray-400 focus:border-brand-green focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="rounded-sm bg-brand-green px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-brand-green-light"
+      >
+        Subscribe
+      </button>
+    </form>
+    <p class:list={["mt-3 text-xs", dark ? "text-gray-500" : "text-brand-gray"]}>
+      No spam. Unsubscribe anytime.
+    </p>
+  </div>
+</section>

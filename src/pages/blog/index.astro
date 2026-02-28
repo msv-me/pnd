@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Blog"
+  description="Style, culture, and the good life — the Preps Not Dead blog."
+>
+  <section class="bg-brand-black py-16 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+      <h1 class="font-serif text-4xl font-bold sm:text-5xl">Blog</h1>
+      <p class="mt-4 text-lg text-gray-400">
+        Style, culture & curated picks.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    {allTags.length > 0 && (
+      <div class="mb-10 flex flex-wrap gap-2">
+        {allTags.map((tag) => (
+          <span class="rounded-sm bg-brand-gray-light px-3 py-1 text-xs font-medium uppercase tracking-wider text-brand-gray">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    {posts.length === 0 ? (
+      <p class="text-center text-brand-gray">Posts coming soon. Stay tuned.</p>
+    ) : (
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.id}
+            heroImage={post.data.heroImage}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

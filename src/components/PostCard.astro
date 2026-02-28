@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  heroImage?: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, slug, heroImage, tags = [] } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article class="group">
+  <a href={`/blog/${slug}/`} class="block">
+    {heroImage && (
+      <div class="mb-4 overflow-hidden rounded-lg">
+        <img
+          src={heroImage}
+          alt={title}
+          class="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+    )}
+    <div class="flex items-center gap-3 text-sm text-brand-gray">
+      <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+      {tags.length > 0 && (
+        <>
+          <span>&middot;</span>
+          <span class="uppercase tracking-wider text-brand-green">{tags[0]}</span>
+        </>
+      )}
+    </div>
+    <h3 class="mt-2 font-serif text-xl font-bold transition-colors group-hover:text-brand-green sm:text-2xl">
+      {title}
+    </h3>
+    <p class="mt-2 text-brand-gray line-clamp-2">{description}</p>
+  </a>
+</article>

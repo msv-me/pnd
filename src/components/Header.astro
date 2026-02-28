@@ -1,0 +1,83 @@
+---
+const navLinks = [
+  { href: "/blog/", label: "Blog" },
+  { href: "/about/", label: "About" },
+  { href: "/services/", label: "Services" },
+  { href: "/links/", label: "Links" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-brand-black text-white">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-3">
+      <img
+        src="/images/pnd-logo-white.png"
+        alt="Preps Not Dead"
+        class="h-10 w-auto"
+      />
+      <span class="font-serif text-xl font-bold tracking-tight hidden sm:inline">
+        Preps Not Dead
+      </span>
+    </a>
+
+    <!-- Mobile menu button -->
+    <button
+      id="menu-toggle"
+      class="sm:hidden p-2 text-white"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Desktop nav -->
+    <ul class="hidden sm:flex items-center gap-8">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              "text-sm font-medium uppercase tracking-widest transition-colors hover:text-brand-green",
+              currentPath.startsWith(href) ? "text-brand-green" : "text-gray-300",
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden sm:hidden border-t border-gray-800">
+    <ul class="flex flex-col px-6 py-4 gap-4">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              "text-sm font-medium uppercase tracking-widest transition-colors hover:text-brand-green",
+              currentPath.startsWith(href) ? "text-brand-green" : "text-gray-300",
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    menu?.classList.toggle("hidden");
+  });
+</script>

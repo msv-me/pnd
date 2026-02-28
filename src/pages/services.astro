@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+
+const services = [
+  {
+    title: "Brand Photography",
+    description:
+      "Elevated product and lifestyle photography that captures your brand's essence. From flat lays to on-location shoots, we create images that tell a story and drive engagement.",
+  },
+  {
+    title: "Creative Direction",
+    description:
+      "Full creative direction for campaigns, lookbooks, and social content. We bring the Preps Not Dead aesthetic — sharp, curated, and intentional — to your brand's visual identity.",
+  },
+  {
+    title: "Content & Styling",
+    description:
+      "Styled shoots and editorial content that blend seamlessly with your existing brand. Perfect for social media, e-commerce, and editorial features.",
+  },
+];
+---
+
+<BaseLayout
+  title="Services"
+  description="Brand photography, creative direction, and styled content by Preps Not Dead."
+>
+  <section class="bg-brand-black py-16 text-center text-white">
+    <div class="mx-auto max-w-4xl px-6">
+      <h1 class="font-serif text-4xl font-bold sm:text-5xl">Services</h1>
+      <p class="mt-4 text-lg text-gray-400">
+        Photography & creative direction with the PND point of view.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <ServiceCard title={service.title} description={service.description} />
+      ))}
+    </div>
+
+    <div class="mt-16 rounded-lg border border-brand-gray-light bg-white p-8 text-center">
+      <h2 class="font-serif text-2xl font-bold">Let's Work Together</h2>
+      <p class="mx-auto mt-3 max-w-lg text-brand-gray">
+        Have a project in mind? Reach out via Instagram DM or email to discuss your
+        vision and get a custom quote.
+      </p>
+      <div class="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="https://instagram.com/prepsnotdead"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block rounded-sm bg-brand-green px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-brand-green-light"
+        >
+          DM on Instagram
+        </a>
+        <a
+          href="mailto:hello@prepsnotdead.com"
+          class="inline-block rounded-sm border border-brand-black px-6 py-3 text-sm font-semibold uppercase tracking-widest transition-colors hover:bg-brand-black hover:text-white"
+        >
+          Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
