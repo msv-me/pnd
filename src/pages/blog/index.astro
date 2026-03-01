@@ -13,7 +13,7 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
   title="Blog"
   description="Style, culture, and the good life — the Preps Not Dead blog."
 >
-  <section class="bg-brand-black py-16 text-center text-white">
+  <section class="bg-brand-black py-10 text-center text-white">
     <div class="mx-auto max-w-4xl px-6">
       <h1 class="font-serif text-4xl font-bold sm:text-5xl">Blog</h1>
       <p class="mt-4 text-lg text-gray-400">
@@ -22,7 +22,7 @@ const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16">
+  <section class="mx-auto max-w-6xl px-6 py-10">
     {allTags.length > 0 && (
       <div class="mb-10 flex flex-wrap gap-2">
         {allTags.map((tag) => (
