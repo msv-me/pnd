@@ -31,7 +31,7 @@ const posts = await getInstagramPosts(12);
             class="group relative aspect-square overflow-hidden"
           >
             <img
-              src={post.media_url}
+              src={post.image_url}
               alt={post.caption?.slice(0, 100) || "Instagram post"}
               loading="lazy"
               class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
