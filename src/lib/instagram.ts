@@ -15,6 +15,21 @@ const POST_SHORTCODES = [
   "C3Lh520PgEN",
   "CjYI1W5rlzZ",
   "Cg4q-p2rFom",
+  "CgzwwfFvyVC",
+  "CfneNGcrEBx",
+  "CfcX5Nuv_Xj",
+  "CeMqikxrnsv",
+  "Cdg4LimrhbC",
+  "CcwEuA2r-BX",
+  "CcmFC0Wrj4T",
+  "CcgdioHLafR",
+  "CccNOf0MNFW",
+  "CcZgMRzMwOp",
+  "CcWsCYDsA-G",
+  "CcRnODUsAIV",
+  "CbLHdAyrY3m",
+  "CbECShsLYj5",
+  "CYZY0rYrlNn",
 ];
 
 export function getInstagramPosts(): InstagramPost[] {
