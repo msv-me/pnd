@@ -10,17 +10,17 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-brand-black py-10 text-center text-white sm:py-12">
+<section class="bg-brand-cream py-10 text-center sm:py-12">
   <div class="mx-auto max-w-4xl px-6">
     <img
-      src="/images/pnd-logo-white.png"
+      src="/images/pnd-logo-transparent.png"
       alt="Preps Not Dead logo"
       class="mx-auto mb-5 h-20 w-auto sm:h-24"
     />
-    <h1 class="font-serif text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+    <h1 class="font-serif text-4xl font-bold tracking-tight text-brand-black sm:text-5xl lg:text-6xl">
       {title}
     </h1>
-    <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400 sm:text-xl">
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-brand-gray sm:text-xl">
       {subtitle}
     </p>
     <div class="mt-5 flex items-center justify-center gap-4">
@@ -32,7 +32,7 @@ const {
       </a>
       <a
         href="/about/"
-        class="rounded-sm border border-gray-600 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-gray-300 transition-colors hover:border-brand-green hover:text-brand-green"
+        class="rounded-sm border border-brand-black px-6 py-3 text-sm font-semibold uppercase tracking-widest text-brand-black transition-colors hover:border-brand-green hover:text-brand-green"
       >
         About
       </a>
