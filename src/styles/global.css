@@ -8,8 +8,8 @@
   --color-brand-gray: #6b7280;
   --color-brand-gray-light: #e5e5e3;
 
-  --font-serif: "Georgia", "Times New Roman", serif;
-  --font-sans: "Inter", "Helvetica Neue", "Arial", sans-serif;
+  --font-serif: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 html {
