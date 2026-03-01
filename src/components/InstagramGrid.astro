@@ -1,7 +1,7 @@
 ---
 import { getInstagramPosts } from "../lib/instagram";
 
-const posts = await getInstagramPosts(12);
+const posts = getInstagramPosts();
 ---
 
 <section class="bg-brand-black py-16 text-white">
@@ -32,7 +32,7 @@ const posts = await getInstagramPosts(12);
           >
             <img
               src={post.image_url}
-              alt={post.caption?.slice(0, 100) || "Instagram post"}
+              alt="Instagram post"
               loading="lazy"
               class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
